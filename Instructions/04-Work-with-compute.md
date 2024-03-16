@@ -59,7 +59,7 @@ Para criar o workspace do Azure Machine Learning, você usará a CLI do Azure. T
 Para executar notebooks no workspace do Azure Machine Learning, você precisará de uma instância de computação. Você pode usar um script de instalação para configurar a instância de computação na criação.
 
 1. No portal do Azure, navegue até o workspace do Azure Machine Learning nomeado **mlw-dp100-labs**.
-1. Selecione o workspace do Azure Machine Learning e, em sua página **Visão geral**, selecione **Iniciar estúdio**. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.
+1. Selecione o espaço de trabalho do Azure Machine Learning e, em sua página **Visão geral**, selecione **Iniciar estúdio**. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.
 1. Feche todos os pop-ups que aparecem no estúdio.
 1. No estúdio do Azure Machine Learning, navegue até a página **Notebooks**.
 1. No painel **Arquivos**, selecione o ícone ⨁ para **Adicionar arquivos**.
