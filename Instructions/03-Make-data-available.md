@@ -15,7 +15,7 @@ Neste exercício, você vai explorar os *armazenamentos de dados* e os *ativos d
 
 ## Provisionar um workspace do Azure Machine Learning
 
-Um *espaço de trabalho* do Azure Machine Learning fornece um local central para gerenciar todos os recursos e ativos necessários para treinar e gerenciar seus modelos. Você pode interagir com o espaço de trabalho do Azure Machine Learning por meio do estúdio, do SDK do Python e da CLI do Azure.
+Um *workspace* do Azure Machine Learning fornece um local central para gerenciar todos os recursos e ativos necessários para treinar e gerenciar seus modelos. Você pode interagir com o workspace do Azure Machine Learning por meio do estúdio, do SDK do Python e da CLI do Azure.
 
 Você usará um script do Shell que usa a CLI do Azure para provisionar o workspace e os recursos necessários. Em seguida, você usará o Designer no estúdio do Azure Machine Learning para treinar e comparar modelos.
 
