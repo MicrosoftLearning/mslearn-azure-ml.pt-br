@@ -88,15 +88,17 @@ Para criar a instância de computação, você pode usar o studio, o SDK do Pyth
     - **Nome de computação**: *insira um nome exclusivo*
     - **Tipo de máquina virtual**: *CPU*
     - **Tamanho da máquina virtual**: *Standard_DS11_v2*
-1. Selecione **Avançar: Configurações avançadas**.
+1. Selecione **Avançar**.
 1. Selecione **Adicionar agendamento** e configure o agendamento para **parar** a instância de computação todos os dias às **18:00** ou **6:00 PM**.
-1. Selecione a alternância para **Provisionar com script de instalação**.
-1. Selecione o script **compute-setup.sh** que você criou anteriormente.
-1. Revise as outras configurações avançadas, mas **não** as selecione:
+1. Selecione **Avançar**.
+1. Examine as configurações de segurança, mas **não** as selecione:
     - **Habilitar acesso SSH**: *você pode usar isso para habilitar o acesso direto à máquina virtual usando um cliente SSH.*
     - **Habilitar rede virtual**: *você normalmente usaria isso em um ambiente corporativo para aprimorar a segurança da rede.*
     - **Atribuir a outro usuário**: *Você pode usar isso para atribuir uma instância de computação a outro cientista de dados.*
-1. **Crie** a instância de computação e aguarde até que ela seja iniciada e seu estado mude para **Em execução**.
+1. Selecione **Avançar**.
+1. Selecione a alternância para **Provisionar com um script de criação**.
+1. Selecione o script **compute-setup.sh** que você criou anteriormente.
+1. Selecione **Examinar + Criar** para criar a instância de computação e aguarde até que ela seja iniciada e seu estado seja alterado para **Em Execução**.
 1. Quando a instância de computação estiver em execução, navegue até a página **Notebooks**. No painel **Arquivos**, clique em **↻** para atualizar o modo de exibição e verificar se uma nova pasta **Users/*your-user-name*/dp100-azure-ml-labs** foi criada.
 
 ## Configurar a instância de computação
