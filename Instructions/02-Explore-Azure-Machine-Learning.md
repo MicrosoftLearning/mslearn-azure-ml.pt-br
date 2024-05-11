@@ -60,7 +60,7 @@ Uma maneira rápida de criar um pipeline de treinamento de modelo é usando o **
 1. Selecione **Configurar e Enviar** na parte superior da página para abrir a caixa de diálogo **Configurar trabalho de pipeline**
 1. Na página **Básico**, selecione **Criar novo** e defina o nome do experimento como `train-regression-designer` e selecione **Avançar**.
 1. Na página **Entradas e saídas**, selecione **Avançar** sem fazer alterações.
-1. Na página **Configurações do runtime**, aparece um erro porque você não tem uma computação padrão para executar o pipeline.
+1. Na página **Configurações de runtime**, aparece um erro porque você não tem uma computação padrão para executar o pipeline.
 
 Vamos criar um destino de computação.
 
