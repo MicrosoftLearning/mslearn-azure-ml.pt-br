@@ -92,7 +92,9 @@ Agora que você tem todos os recursos necessários, pode executar o notebook par
 1. Aguarde até que seu status seja alterado para **Concluído**.
 1. Quando o status do trabalho Automatizar Machine Learning for alterado para **Concluído**, explore os detalhes do trabalho no estúdio:
     - A guia **Verificadores de integridade dos dados** mostra se os dados de treinamento apresentaram algum problema.
-    - A guia **Modelos** mostrará todos os modelos que foram treinados. Selecione **Exibir explicação** para o melhor modelo para entender quais recursos influenciaram mais o valor de destino.
+    - A guia **Modelos + trabalhos filho** mostrará todos os modelos que foram treinados. Clique em **Explicar modelo** para obter o melhor modelo e crie a execução do trabalho de explicação usando o **aml-cluster**.
+    - Aguarde até que uma nova coluna **Explicado** apareça ao lado da coluna **Nome do algoritmo** e clique em **Exibir explicação**. Talvez seja necessário atualizar a lista de algoritmos para que essa opção apareça.
+    - Revise o painel criado para entender quais recursos mais influenciaram o valor de destino.
 
 ## Excluir recursos do Azure
 

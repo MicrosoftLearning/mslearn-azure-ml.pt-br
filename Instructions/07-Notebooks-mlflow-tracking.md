@@ -85,6 +85,8 @@ Agora que tem todos os recursos necessários, você pode executar o notebook par
 1. Execute todas as células no notebook.
 1. Examine o novo trabalho criado sempre que você treinar um modelo.
 
+    > **Observação:** quando você treina um modelo, a saída da célula mostrará um link para a execução do trabalho. Se o link retornar um erro, você ainda poderá revisar a execução do trabalho selecionando **Trabalhos** no painel do lado esquerdo.
+    
 ## Excluir recursos do Azure
 
 Se você terminou de explorar o Azure Machine Learning, exclua os recursos que criou para evitar custos desnecessários do Azure.
