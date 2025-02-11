@@ -1,3 +1,11 @@
+#README
+
+We've turned off the ability to report issues directly on this repo and do not monitor PRs.
+
+Provide feedback here: https://aka.ms/provide-feedback
+
+Or, if you are a trainer with a microsoft.com email address, please create a ticket in AzDO.
+
 ## Exercícios práticos para o Azure Machine Learning (v2)
 
 Este repositório contém os exercícios práticos de laboratório para os Roteiros de aprendizagem da Microsoft que exploram o Azure Machine Learning. Os Roteiros de aprendizagem consistem em módulos individuais no Microsoft Learn. Os laboratórios foram projetados para acompanhar os materiais de aprendizado e para você praticar o uso das tecnologias descritas.
