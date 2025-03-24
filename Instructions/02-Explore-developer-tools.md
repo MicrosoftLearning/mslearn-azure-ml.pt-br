@@ -112,13 +112,13 @@ Embora a CLI do Azure seja ideal para automação, talvez você queira examinar 
 1. No portal do Azure, navegue até o workspace do Azure Machine Learning nomeado **mlw-dp100-labs**.
 1. Selecione o espaço de trabalho do Azure Machine Learning e, em sua página **Visão geral**, selecione **Iniciar estúdio**. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.
 1. Feche todos os pop-ups que aparecem no estúdio.
-1. No estúdio do Azure Machine Learning, navegue até a página **Computação** e verifique se a instância de computação e o cluster criados na seção anterior existem. A instância de computação deve estar em execução, o cluster deve estar ocioso e ter 0 nós em execução.
+1. No estúdio do Azure Machine Learning, navegue até a página **Computação** e verifique se a instância de computação e o cluster criados na seção anterior existem. A instância de computação deve estar em execução, o cluster deve estar com status Bem-sucedido e ter 0 nós em execução.
 
 ## Usar o SDK do Python para treinar um modelo
 
 Agora que você verificou que a computação necessária foi criada, você pode usar o SDK do Python para executar um script de treinamento. Você instalará e usará o SDK do Python na instância de computação e treinará o modelo de machine learning no cluster de cálculo.
 
-1. Selecione o aplicativo **Terminal** para sua **instância de computação** para iniciar o terminal.
+1. Em sua **instância de computação**, há várias opções no campo **Aplicativos**. Selecione o aplicativo **Terminal** para iniciar o terminal (talvez seja necessário clicar nas reticências para expandir a seleção).
 1. No terminal, instale o SDK do Python na instância de computação executando os seguintes comandos no terminal:
 
     ```
@@ -139,7 +139,7 @@ Agora que você verificou que a computação necessária foi criada, você pode 
 
     > Selecione **Autenticar** e siga as etapas necessárias se aparecer uma notificação solicitando que você se autentique.
 
-1. Verifique se o notebook usa o kernel **Python 3.8 - AzureML**. Cada kernel tem sua própria imagem com seu próprio conjunto de pacotes pré-instalados.
+1. Verifique se o notebook usa o **kernel Python 3.8 – AzureML** no canto superior direito do ambiente do notebook. Cada kernel tem sua própria imagem com seu próprio conjunto de pacotes pré-instalados.
 1. Execute todas as células no notebook.
 
 Um novo trabalho será criado no workspace do Azure Machine Learning. O trabalho acompanha as entradas definidas na configuração do trabalho, o código usado e as saídas, como métricas, para avaliar o modelo.
