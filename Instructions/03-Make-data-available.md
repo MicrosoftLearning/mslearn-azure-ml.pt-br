@@ -47,6 +47,34 @@ Para criar o workspace do Azure Machine Learning e recursos de computação, voc
 
 1. Aguarde a conclusão do script - isso normalmente leva cerca de 5 a 10 minutos.
 
+    <details>
+    <summary><b>Dica de solução de problemas</b>: Erro de criação do espaço de trabalho</summary><br>
+    <p>Se você receber um erro ao executar o script de instalação por meio da CLI, será necessário provisionar os recursos manualmente:</p>
+    <ol>
+        <li>Na Página inicial do portal do Azure, selecione <b>+Criar um recurso</b>.</li>
+        <li>Pesquise o <i>machine learning</i> e <b>Azure Machine Learning</b>. Selecione <b>Criar</b>.</li>
+        <li>Crie um novo recurso do Azure Machine Learning com as seguintes configurações: <ul>
+                <li><b>Assinatura</b>: <i>sua assinatura do Azure</i></li>
+                <li><b>Grupo de recursos</b>: rg-dp100-labs</li>
+                <li><b>Nome do espaço de trabalho</b>: mlw-dp100-labs</li>
+                <li><b>Região</b>: <i>selecione a região geográfica mais próxima</i></li>
+                <li><b>Conta de armazenamento</b>: <i>observe a nova conta de armazenamento padrão que será criada para o seu workspace</i></li>
+                <li><b>Cofre de chaves</b>: <i>observe o novo cofre de chaves padrão que será criado para o seu workspace</i></li>
+                <li><b>Application Insights</b>: <i>observe o novo recurso do Application Insights padrão que será criado para o seu workspace</i></li>
+                <li><b>Registro de contêiner</b>: nenhum (<i>um será criado automaticamente quando você implantar um modelo em um contêiner pela primeira vez</i>)</li>
+            </ul>
+        <li>Selecione <b>Review + create</b> e aguarde até que o workspace e seus recursos associados sejam criados - isso normalmente leva cerca de 5 minutos.</li>
+        <li>Selecione <b>Ir para recurso</b> em sua página <b>Visão geral</b>, selecione <b>Iniciar estúdio</b>. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.</li>
+        <li>Feche todos os pop-ups que aparecem no estúdio.</li>
+        <li>No estúdio do Azure Machine Learning, navegue até a página <b>Compute</b> e selecione <b>+New</b> na guia <b>Compute instances</b>.</li>
+        <li>Dê um nome exclusivo à instância de computação e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual.</li>
+        <li>Selecione <b>Examinar + criar</b> e <b>Criar</b>.</li>
+        <li>Em seguida, selecione a guia <b>Compute Clusters</b> e selecione <b>+New</b>.</li>
+        <li>Escolha a mesma região em que você criou seu workspace e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual. Selecione <b>Avançar</b></li>
+        <li>Dê ao cluster um nome exclusivo e selecione <b>Create</b>.</li>
+    </ol>
+    </details>
+
 ## Explorar os armazenamentos de dados padrão
 
 Quando você cria um workspace do Azure Machine Learning, uma Conta de Armazenamento é automaticamente criada e conectada ao workspace. Você vai explorar como a Conta de Armazenamento é conectada.
