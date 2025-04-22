@@ -60,6 +60,26 @@ Para começar, abra o Azure Cloud Shell, instale a extensão do Azure Machine Le
 
 1. Aguarde até que o workspace e seus recursos associados sejam criados - isso normalmente leva cerca de 5 minutos.
 
+    <details>  
+    <summary><b>Dica de solução de problemas</b>: Erro de criação do espaço de trabalho</summary><br>
+    <p>Se você receber um erro ao criar um workspace por meio da CLI, será necessário provisionar o recurso manualmente:</p>
+    <ol>
+        <li>Na Página inicial do portal do Azure, selecione <b>+Criar um recurso</b>.</li>
+        <li>Pesquise o <i>machine learning</i> e <b>Azure Machine Learning</b>. Selecione <b>Criar</b>.</li>
+        <li>Crie um novo recurso do Azure Machine Learning com as seguintes configurações: <ul>
+                <li><b>Assinatura</b>: <i>sua assinatura do Azure</i></li>
+                <li><b>Grupo de recursos</b>: rg-dp100-labs</li>
+                <li><b>Nome do espaço de trabalho</b>: mlw-dp100-labs</li>
+                <li><b>Região</b>: <i>selecione a região geográfica mais próxima</i></li>
+                <li><b>Conta de armazenamento</b>: <i>observe a nova conta de armazenamento padrão que será criada para o seu workspace</i></li>
+                <li><b>Cofre de chaves</b>: <i>observe o novo cofre de chaves padrão que será criado para o seu workspace</i></li>
+                <li><b>Application Insights</b>: <i>observe o novo recurso do Application Insights padrão que será criado para o seu workspace</i></li>
+                <li><b>Registro de contêiner</b>: nenhum (<i>um será criado automaticamente quando você implantar um modelo em um contêiner pela primeira vez</i>)</li>
+            </ul>
+        <li>Selecione <b>Review + create</b> e aguarde até que o workspace e seus recursos associados sejam criados - isso normalmente leva cerca de 5 minutos.</li>
+    </ol>
+    </details>
+
 ## Criar uma instância de computação com a CLI do Azure
 
 Outra parte importante da infraestrutura necessária para treinar um modelo de aprendizado de máquina é a **computação**. Embora você possa treinar modelos localmente, é mais escalável e econômico usar computação em nuvem.
@@ -84,6 +104,19 @@ Neste exercício, você criará uma instância de computação com as seguintes 
 
     Se você receber uma mensagem de erro informando que uma instância de computação com o nome já existe, altere o nome e tente novamente o comando.
 
+    <details>  
+    <summary><b>Dica de solução de probelmas</b>: Erro de criação do cálculo</summary><br>
+    <p>Se você receber um erro ao criar uma instância de computação por meio da CLI, será necessário provisionar o recurso manualmente:</p>
+    <ol>
+        <li>No portal do Azure, navegue até o workspace do Azure Machine Learning nomeado <b>mlw-dp100-labs</b>.</li>
+        <li>Selecione o espaço de trabalho do Azure Machine Learning e, em sua página <b>Visão geral</b>, selecione <b>Iniciar estúdio</b>. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.</li>
+        <li>Feche todos os pop-ups que aparecem no estúdio.</li>
+        <li>No estúdio do Azure Machine Learning, navegue até a página <b>Compute</b> e selecione <b>+New</b> na guia <b>Compute instances</b>.</li>
+        <li>Dê um nome exclusivo à instância de computação e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual.</li>
+        <li>Selecione <b>Examinar + criar</b> e <b>Criar</b>.</li>
+    </ol>
+    </details>
+
 ## Criar um cluster de computação com a CLI do Azure
 
 Embora uma instância de computação seja ideal para desenvolvimento, um cluster de computação é mais adequado quando queremos treinar modelos de aprendizado de máquina. Somente quando um trabalho for enviado para usar o cluster de computação, ele será redimensionado para mais de 0 nós e executará o trabalho. Quando o cluster de computação não for mais necessário, ele será redimensionado automaticamente para 0 nós, minimizando os custos. 
@@ -104,6 +137,19 @@ Você criará um cluster de computação com as seguintes configurações:
     ```azurecli
     az ml compute create --name "aml-cluster" --size STANDARD_DS11_V2 --max-instances 2 --type AmlCompute -w mlw-dp100-labs -g rg-dp100-labs
     ```
+
+    <details>  
+    <summary><b>Dica de solução de probelmas</b>: Erro de criação do cálculo</summary><br>
+    <p>Se você receber um erro ao criar um cluster de computação por meio da CLI, será necessário provisionar o recurso manualmente:</p>
+    <ol>
+        <li>No portal do Azure, navegue até o workspace do Azure Machine Learning nomeado <b>mlw-dp100-labs</b>.</li>
+        <li>Selecione o espaço de trabalho do Azure Machine Learning e, em sua página <b>Visão geral</b>, selecione <b>Iniciar estúdio</b>. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.</li>
+        <li>Feche todos os pop-ups que aparecem no estúdio.</li>
+        <li>No Estúdio do Azure Machine Learning, navegue até a página <b>Computação</b> e selecione <b>+Novo</b> na guia <b>Clusters de cálculo</b>.</li>
+        <li>Escolha a mesma região em que você criou seu workspace e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual. Selecione <b>Avançar</b></li>
+        <li>Dê ao cluster um nome exclusivo e selecione <b>Create</b>.</li>
+    </ol>
+    </details>
 
 ## Configurar sua estação de trabalho com o estúdio do Azure Machine Learning
 

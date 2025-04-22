@@ -45,84 +45,52 @@ O *estúdio do Azure Machine Learning* é um portal baseado na Web por meio do q
 1. Observe a seção **Ativos**, que inclui **Dados**, **Trabalhos** e **Modelos**, entre outras coisas. Os ativos são consumidos ou criados ao treinar ou pontuar um modelo. Os ativos são usados para treinar, implantar e gerenciar seus modelos e podem ter a versão para acompanhar seu histórico.
 1. Observe a seção **Gerenciar**, que inclui **Computação**, entre outras coisas. Esses são recursos de infraestrutura necessários para treinar ou implantar um modelo de machine learning.
 
-## Criar um pipeline de treinamento
+## Treinar um modelo usando o AutoML
 
 Para explorar o uso dos ativos e recursos no workspace do Azure Machine Learning, vamos tentar treinar um modelo.
 
-Uma maneira rápida de criar um pipeline de treinamento de modelo é usando o **Designer**.
+Uma maneira rápida de treinar e encontrar o melhor modelo para uma tarefa com base em seus dados é usando a opção **AutoML** .
 
 > **Observação**: pop-ups podem aparecer para guiar você através do estúdio. Você pode fechar e ignorar todos os pop-ups e se concentrar nas instruções deste laboratório.
 
-1. Selecione a página **Designer** no menu do lado esquerdo do estúdio.
-1. Selecione a amostra **Regressão – Previsão de preços de automóveis (básico)** 
+1. Baixe os dados de treinamento que serão usados e `https://github.com/MicrosoftLearning/mslearn-azure-ml/raw/refs/heads/main/Labs/02/diabetes-data.zip`extraia os arquivos compactados.
+1. No Estúdio do Azure Machine Learning, selecione a página **AutoML**, no menu do lado esquerdo do estúdio.
+1. Selecione **+ New Automated ML job**.
+1. Na etapa **Configurações básicas**, dê um nome exclusivo ao seu trabalho de treinamento e experimente ou use os valores padrão atribuídos. Selecione **Avançar**.
+1. Na etapa **Tipo de tarefa e dados**, selecione **Classification** como o tipo de tarefa e selecione **+ Create** para adicionar seus dados de treinamento.
+2. Na página **Criar ativo de dados**, na etapa **Tipo de dados** dê um nome ao ativo de dados (por exemplo `training-data`, ) e selecione **Avançar**.
+1. Na etapa **Fonte de dados**, selecione **From local files** para fazer upload dos dados de treinamento que você baixou anteriormente. Selecione **Avançar**.
+1. Na etapa **Tipo de armazenamento de destino**, confira se o **Azure Blob Storage** está selecionado como o tipo de armazenamento de dados e que **workspaceblobstore** é o armazenamento de dados selecionado. Selecione **Avançar**.
+1. Na etapa de **seleção do MLTable**, selecione **Upload folder** e selecione a pasta que você extraiu do arquivo compactado baixado anteriormente. Selecione **Avançar**.
+1. Examine as configurações do seu ativo de dados e selecione **Criar**.
+1. De volta à etapa **Tipo de tarefa e dados**, selecione os dados que você acabou de carregar e selecione **Avançar**.
 
-    Um novo pipeline é exibido. Na parte superior do pipeline, um componente é mostrado para carregar **Dados de preços de automóveis (brutos)**. O pipeline processa os dados e treina um modelo de regressão linear para prever o preço de cada automóvel.
-1. Selecione **Configurar e Enviar** na parte superior da página para abrir a caixa de diálogo **Configurar trabalho de pipeline**
-1. Na página **Básico**, selecione **Criar novo** e defina o nome do experimento como `train-regression-designer` e selecione **Avançar**.
-1. Na página **Entradas e saídas**, selecione **Avançar** sem fazer alterações.
-1. Na página **Configurações de runtime**, aparece um erro porque você não tem uma computação padrão para executar o pipeline.
+> **Dica**: Pode ser necessário selecionar o tipo de tarefa em **Classification** novamente antes de mover para a próxima etapa.
 
-Vamos criar um destino de computação.
+1. Na etapa **Configurações de tarefa**, selecione **Diabético (Booleano)** como sua coluna de destino e, em seguida, abra a opção **Visualizar configurações adicionais**.
+1. No painel **Additional configuration**, altere a métrica primária para **Accuracy**, em seguida, selecione **Salvar**.
+1. Expanda a opção **Limits** e defina as seguintes propriedades:
+    * **Avaliações máximas**: 10
+    * **Tempo limite do experimento (em minutos)**: 60
+    * **Tempo limite da iteração (em minutos)**: 15
+    * **Habilitar o encerramento antecipado**: verificado
 
-## Criar um destino de computação
+1. Para **Test data**, selecione **Train-test split** e verifique se o **Teste de porcentagem de dados** é 10. Selecione **Avançar**.
+1. Na etapa **Computação**, verifique se o tipo de computação é **Sem servidor** e o tamanho da máquina virtual selecionado é **Standard_DS3_v2**. Selecione **Avançar**.
 
-Para executar qualquer carga de trabalho no workspace do Azure Machine Learning, você precisará de um recurso de computação. Um dos benefícios do Azure Machine Learning é a capacidade de criar computação baseada em nuvem na qual você pode executar experimentos e scripts de treinamento em escala.
+> **Observação**: as instâncias de computação e os clusters de computação se baseiam em imagens padrão de máquina virtual do Azure. Para este exercício, a imagem *Standard_DS3_v2* é recomendada para atingir o equilíbrio ideal entre custo e desempenho. Se a sua assinatura tiver uma cota que não inclua essa imagem, escolha uma imagem alternativa. Mas tenha em mente que uma imagem maior pode gerar um custo maior e uma imagem menor pode não ser suficiente para concluir as tarefas. Como alternativa, peça ao administrador do Azure para estender sua cota.
 
-1. No estúdio do Azure Machine Learning, selecione a página de **Computação**, no menu do lado esquerdo. Existem quatro tipos de recursos de computação que você pode usar:
-    - **Instâncias de computação**: uma máquina virtual gerenciada pelo Azure Machine Learning. Ideal para desenvolvimento quando você está explorando dados e experimentando iterativamente modelos de machine learning.
-    - **Clusters de computação**: clusters escalonáveis de máquinas virtuais para processamento sob demanda de código de experimento. Ideal para executar código de produção ou trabalhos automatizados.
-    - **Clusters Kubernetes**: um cluster Kubernetes usado para treinamento e pontuação. Ideal para implantação de modelos em tempo real e em larga escala.
-    - **Computação anexada**: anexe seus recursos de computação do Azure existentes ao workspace, como Máquinas virtuais ou clusters do Azure Databricks.
-
-    Para treinar um modelo de machine learning criado com o Designer, você pode usar uma instância de computação ou um cluster de computação.
-
-2. Na guia **Instâncias de Computação**, adicione uma nova instância de computação com as configurações a seguir. 
-    - **Nome de computação**: *insira um nome exclusivo*
-    - **Localização**: *automaticamente a mesma localização que seu workspace*
-    - **Tipo de máquina virtual**: `CPU`
-    - **Tamanho da máquina virtual:**: `Standard_DS11_v2`
-    - **Cota disponível**: mostra núcleos dedicados disponíveis.
-    - **Mostrar configurações avançadas**: observe as seguintes configurações, mas não as selecione:
-        - **Habilitar acesso SSH**: `Unselected` *(você pode usar isso para habilitar o acesso direto à máquina virtual usando um cliente SSH)*
-        - **Habilitar rede virtual**: `Unselected` *(você normalmente usaria isso em um ambiente corporativo para aprimorar a segurança da rede)*
-        - **Atribuir a outro usuário**: `Unselected` *(você pode usar isso para atribuir uma instância de computação a um cientista de dados)*
-        - **Provisionamento com script de instalação**: `Unselected` *(você pode usar isso para adicionar um script para ser executado na instância remota quando criado)*
-        - **Atribuir uma identidade gerenciada**: `Unselected` *(você pode anexar identidades gerenciadas atribuídas ao usuário ou ao sistema para permitir acesso aos recursos*
-
-3. Selecione **Criar** e aguarde até que a instância de computação seja iniciada e seu estado seja alterado para **Em execução**.
-
-> **Observação**: as instâncias de computação e os clusters de computação se baseiam em imagens padrão de máquina virtual do Azure. Para este exercício, a imagem *Standard_DS11_v2* é recomendada para atingir o equilíbrio ideal entre custo e desempenho. Se a sua assinatura tiver uma cota que não inclua essa imagem, escolha uma imagem alternativa. Mas tenha em mente que uma imagem maior pode gerar um custo maior e uma imagem menor pode não ser suficiente para concluir as tarefas. Como alternativa, peça ao administrador do Azure para estender sua cota.
-
-## Executar o pipeline de treinamento
-
-Você criou um destino de computação e agora pode executar seu pipeline de treinamento de amostra no Designer.
-
-1. Navegue até a página **Designer**.
-1. Selecione o esboço do pipeline **Regressão - Previsão de preços de automóveis (Básico)**.
-1. Selecione **Configurar e Enviar** na parte superior da página para abrir a caixa de diálogo **Configurar trabalho de pipeline**
-1. Na página **Básico**, selecione **Criar novo** e defina o nome do experimento como `train-regression-designer` e selecione **Avançar**.
-1. Na página **Entradas e saídas**, selecione **Avançar** sem fazer alterações.
-1. Nas **Configurações de runtime**, na lista suspensa **Selecionar tipo de computação**, selecione *Instância de computação* e, na lista suspensa **Selecionar instância de computação de ML do Azure**, selecione sua instância de computação recém-criada.
-1. Selecione **Examinar + Enviar** para examinar o trabalho do pipeline e, em seguida, selecione **Enviar** para executar o pipeline de treinamento.
-
-O pipeline de treinamento agora será enviado para a instância de computação. Levará aproximadamente 10 minutos para o pipeline ser concluído. Enquanto isso, vamos explorar algumas outras páginas.
+1. Revise as configurações e selecione **Submit training job**.
 
 ## Usar trabalhos para visualizar seu histórico
 
-Sempre que você executa um script ou pipeline no workspace do Azure Machine Learning, ele é registrado como um **trabalho**. Os trabalhos permitem que você acompanhe as cargas de trabalho executadas e as compare entre si. Os trabalhos pertencem a um **experimento**, que permite agrupar execuções de trabalho juntas.
+Depois de enviar o trabalho, você será redirecionado para a página do trabalho. Os trabalhos permitem que você acompanhe as cargas de trabalho executadas e as compare entre si. Os trabalhos pertencem a um **experimento**, que permite agrupar execuções de trabalho juntas. 
 
-1. Navegue até a página **Trabalhos**, usando o menu no lado esquerdo do estúdio do Azure Machine Learning.
-1. Selecione o experimento **train-regression-designer** para exibir suas execuções de trabalho. Aqui, você terá uma visão geral de todos os trabalhos que fazem parte deste experimento. Se você executou vários pipelines de treinamento, essa exibição permite comparar os pipelines e identificar o melhor.
-1. Selecione o último trabalho no experimento **train-regression-designer**.
-1. Observe que o pipeline de treinamento é mostrado onde você pode exibir quais componentes foram executados com êxito ou falharam. Se o trabalho ainda estiver em execução, você também poderá identificar o que está sendo executado no momento.
-1. Para exibir os detalhes do trabalho de pipeline, selecione a **Visão geral** do trabalho no canto superior direito para expandir a **Visão geral do trabalho de pipeline**.
-1. Observe que nos parâmetros **Visão geral**, você pode encontrar o status do trabalho, quem criou o pipeline, quando ele foi criado e quanto tempo levou para executar o pipeline completo (entre outras coisas).
+1. Observe que nos parâmetros **Visão geral**, você pode encontrar o status do trabalho, quem o criou, quando foi criado e quanto tempo levou para ser executado (entre outras coisas).
+1. Deve levar de 10 a 20 minutos para que o trabalho de treinamento termine. Quando estiver concluído, você também pode visualizar os detalhes de cada componente individual da execução, incluindo a saída. Sinta-se à vontade para explorar a página do trabalho para entender como os modelos são treinados.
 
-    Ao executar um script ou pipeline como um trabalho, você pode definir quaisquer entradas e documentar quaisquer saídas. O Azure Machine Learning também controla automaticamente as propriedades do seu trabalho. Ao usar trabalhos, você pode facilmente visualizar seu histórico para entender o que você ou seus colegas já fizeram.
-
+    O Azure Machine Learning também controla automaticamente as propriedades do seu trabalho. Ao usar trabalhos, você pode facilmente visualizar seu histórico para entender o que você ou seus colegas já fizeram.
     Durante a experimentação, os trabalhos ajudam a acompanhar os diferentes modelos que você treina para comparar e identificar o melhor modelo. Durante a produção, os trabalhos permitem verificar se as cargas de trabalho automatizadas foram executadas conforme o esperado.
-
-1. Quando o trabalho for concluído, você também poderá exibir os detalhes de cada execução de componente individual, incluindo a saída. Sinta-se à vontade para explorar o pipeline para entender como o modelo é treinado.
 
 ## Excluir recursos do Azure
 

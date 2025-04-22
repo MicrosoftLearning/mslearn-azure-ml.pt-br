@@ -54,6 +54,26 @@ Para criar o workspace do Azure Machine Learning, você usará a CLI do Azure. T
 
 1. Aguarde a conclusão do comando - isso normalmente leva cerca de 5 a 10 minutos.
 
+    <details>  
+    <summary><b>Dica de solução de problemas</b>: Erro de criação do espaço de trabalho</summary><br>
+    <p>Se você receber um erro ao criar um workspace por meio da CLI, será necessário provisionar o recurso manualmente:</p>
+    <ol>
+        <li>Na Página inicial do portal do Azure, selecione <b>+Criar um recurso</b>.</li>
+        <li>Pesquise o <i>machine learning</i> e <b>Azure Machine Learning</b>. Selecione <b>Criar</b>.</li>
+        <li>Crie um novo recurso do Azure Machine Learning com as seguintes configurações: <ul>
+                <li><b>Assinatura</b>: <i>sua assinatura do Azure</i></li>
+                <li><b>Grupo de recursos</b>: rg-dp100-labs</li>
+                <li><b>Nome do espaço de trabalho</b>: mlw-dp100-labs</li>
+                <li><b>Região</b>: <i>selecione a região geográfica mais próxima</i></li>
+                <li><b>Conta de armazenamento</b>: <i>observe a nova conta de armazenamento padrão que será criada para o seu workspace</i></li>
+                <li><b>Cofre de chaves</b>: <i>observe o novo cofre de chaves padrão que será criado para o seu workspace</i></li>
+                <li><b>Application Insights</b>: <i>observe o novo recurso do Application Insights padrão que será criado para o seu workspace</i></li>
+                <li><b>Registro de contêiner</b>: nenhum (<i>um será criado automaticamente quando você implantar um modelo em um contêiner pela primeira vez</i>)</li>
+            </ul>
+        <li>Selecione <b>Review + create</b> e aguarde até que o workspace e seus recursos associados sejam criados - isso normalmente leva cerca de 5 minutos.</li>
+    </ol>
+    </details>
+
 ## Criar o script de instalação de computação
 
 Para executar notebooks no workspace do Azure Machine Learning, você precisará de uma instância de computação. Você pode usar um script de instalação para configurar a instância de computação na criação.
