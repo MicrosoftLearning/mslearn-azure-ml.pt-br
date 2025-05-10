@@ -64,7 +64,7 @@ Para criar o workspace do Azure Machine Learning e recursos de computação, voc
                 <li><b>Registro de contêiner</b>: nenhum (<i>um será criado automaticamente quando você implantar um modelo em um contêiner pela primeira vez</i>)</li>
             </ul>
         <li>Selecione <b>Review + create</b> e aguarde até que o workspace e seus recursos associados sejam criados - isso normalmente leva cerca de 5 minutos.</li>
-        <li>Selecione <b>Ir para recurso</b> em sua página <b>Visão geral</b>, selecione <b>Iniciar estúdio</b>. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.</li>
+        <li>Selecione <b>Go to resource</b> em sua página <b>Visão greal</b>, selecione <b>Launch studio</b>. Outra guia será aberta em seu navegador para abrir o estúdio do Azure Machine Learning.</li>
         <li>Feche todos os pop-ups que aparecem no estúdio.</li>
         <li>No estúdio do Azure Machine Learning, navegue até a página <b>Compute</b> e selecione <b>+New</b> na guia <b>Compute instances</b>.</li>
         <li>Dê um nome exclusivo à instância de computação e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual.</li>
@@ -137,7 +137,7 @@ O código para criar um armazenamento de dados e ativos de dados com o SDK do Py
 
     > Selecione **Autenticar** e siga as etapas necessárias se aparecer uma notificação solicitando que você se autentique.
 
-1. Verifique se o notebook usa o kernel **Python 3.8 - AzureML**.
+1. Verifique se o notebook usa o kernel **Python 3.10 — AzureML**.
 1. Execute todas as células no notebook.
 
 ## Opcional: explore os ativos de dados

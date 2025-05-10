@@ -109,7 +109,7 @@ O uso de um notebook anexado a uma instância de computação é ideal para expe
 
     > Selecione **Autenticar** e siga as etapas necessárias se aparecer uma notificação solicitando que você se autentique.
 
-1. Verifique se o notebook usa o kernel **Python 3.8 - AzureML**.
+1. Verifique se o notebook usa o kernel **Python 3.10 — AzureML**.
 1. Executar todas as células para explorar o código e treinar um modelo.
 1. Selecione o ícone ☰ na parte superior do notebook para exibir o **menu do notebook**.
 1. Expanda **Exportar como** e selecione **Python (.py)** para converter o notebook em um script Python.

@@ -109,7 +109,7 @@ Agora que tem todos os recursos necessários, você pode executar o notebook par
 
     > Selecione **Autenticar** e siga as etapas necessárias se aparecer uma notificação solicitando que você se autentique.
 
-1. Verifique se o notebook usa o kernel **Python 3.8 - AzureML**.
+1. Verifique se o notebook usa o kernel **Python 3.10 — AzureML**.
 1. Execute todas as células no notebook.
 1. Examine o novo trabalho criado sempre que você treinar um modelo.
 
