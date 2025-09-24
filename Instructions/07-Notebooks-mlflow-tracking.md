@@ -67,7 +67,7 @@ Para criar o workspace do Azure Machine Learning e uma instância de computaçã
         <li>Feche todos os pop-ups que aparecem no estúdio.</li>
         <li>No estúdio do Azure Machine Learning, navegue até a página <b>Compute</b> e selecione <b>+New</b> na guia <b>Compute instances</b>.</li>
         <li>Dê um nome exclusivo à instância de computação e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual.</li>
-        <li>Selecione <b>Examinar + criar</b> e <b>Criar</b>.</li>
+        <li>Selecione <b>Examinar + Criar</b> e, em seguida, selecione <b>Criar</b>.</li>
         <li>Em seguida, selecione a guia <b>Compute Clusters</b> e selecione <b>+New</b>.</li>
         <li>Escolha a mesma região em que você criou seu workspace e selecione <b>Standard_DS11_v2</b> como o tamanho da máquina virtual. Selecione <b>Avançar</b></li>
         <li>Dê ao cluster um nome exclusivo e selecione <b>Create</b>.</li>
@@ -87,8 +87,7 @@ Depois de criar o workspace e os recursos de computação necessários, você po
 
     ```
     pip uninstall azure-ai-ml
-    pip install azure-ai-ml
-    pip install mlflow
+    pip install azure-ai-ml==1.27.1 mlflow==2.22.0 azureml-core==1.51.0 azureml-defaults==1.51.0 azureml-mlflow==1.51.0 azureml-telemetry==1.51.0 scikit-learn==1.5.1
     ```
 
     > Ignore todas as mensagens (de erro) que dizem que os pacotes não puderam ser encontrados e desinstalados.
